@@ -12,6 +12,11 @@ app.get('/', (req, res) => {
   res.render('index', { restaurants: restaurantData })
 })
 
+app.get('/:id', (req, res) => {
+  const restaurant = restaurantData.find(item => item.id.toString() === req.params.id)
+  res.render('show', { restaurant })
+})
+
 app.listen(3000, () => {
   console.log('App is running on http://localhost:3000')
 })
