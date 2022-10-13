@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
   res.render('index', { restaurants: restaurantData })
 })
 
-app.get('/:id', (req, res) => {
+app.get('/restaurants/:id', (req, res) => {
   const restaurant = restaurantData.find(item => item.id.toString() === req.params.id)
   res.render('show', { restaurant })
 })
