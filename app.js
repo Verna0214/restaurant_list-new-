@@ -31,6 +31,16 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
+app.get('/search', (req, res) => {
+  const keyword = req.query.keyword
+  Restaurant.find()
+    .lean()
+    .then(restaurants => {
+      const restaurantsData = restaurants.filter(item => item.name.toLowerCase().includes(keyword.toLowerCase()) || item.category.includes(keyword))
+      res.render('index', { restaurants: restaurantsData, keyword: keyword })
+    })
+})
+
 app.get('/restaurants/new', (req, res) => {
   return res.render('new')
 })
