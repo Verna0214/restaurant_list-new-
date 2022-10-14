@@ -2,7 +2,8 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 
-const restaurantData = require('./restaurant.json').results
+// 載入 Restaurant model
+const Restaurant = require('./models/restaurant')
 const app = express()
 // 設定連線mongoDB
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -23,7 +24,10 @@ app.set('view engine', 'hbs')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantData })
+  Restaurant.find() // 取出Restaurant model裡的資料
+    .lean()
+    .then(restaurants => res.render('index', { restaurants }))
+    .catch(error => console.log(error))
 })
 
 app.get('/search', (req, res) => {
