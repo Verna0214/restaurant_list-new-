@@ -41,11 +41,7 @@ app.post('/restaurants', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.get('/search', (req, res) => {
-  const keyword = req.query.keyword
-  const restaurants = restaurantData.filter(item => item.name.toLowerCase().includes(keyword.toLowerCase()) || item.category.includes(keyword))
-  res.render('index', { restaurants, keyword })
-})
+
 
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
@@ -65,8 +61,16 @@ app.get('/restaurants/:id/edit', (req, res) => {
 
 app.post('/restaurants/:id', (req, res) => {
   const id = req.params.id
-  Restaurant.findByIdAndUpdate(id, req.body)
+  return Restaurant.findByIdAndUpdate(id, req.body)
     .then(() => res.redirect(`/restaurants/${id}`))
+    .catch((error) => console.log(error))
+})
+
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .then((restaurant) => restaurant.remove())
+    .then(() => res.redirect('/'))
     .catch((error) => console.log(error))
 })
 
