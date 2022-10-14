@@ -10,6 +10,19 @@ header {
   color: #226089;
 }
 
+.create-link {
+  color: #4592af;
+}
+
+.create-title {
+  font-size: 20px;
+}
+
+.create-link .create-title:hover {
+  color: #226089;
+  text-decoration: none;
+}
+
 .banner {
   position: relative;
   z-index: -1;
