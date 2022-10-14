@@ -1,6 +1,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
+const restaurant = require('./models/restaurant')
 
 // 載入 Restaurant model
 const Restaurant = require('./models/restaurant')
@@ -52,6 +53,21 @@ app.get('/restaurants/:id', (req, res) => {
     .lean()
     .then((restaurant) => res.render('show', { restaurant }))
     .catch(error => console.log(error))
+})
+
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then((restaurant) => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
+
+app.post('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  Restaurant.findByIdAndUpdate(id, req.body)
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch((error) => console.log(error))
 })
 
 app.listen(3000, () => {

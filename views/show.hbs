@@ -39,6 +39,11 @@
       <img class="rounded mx-auto d-block mb-4 w-100" src="{{restaurant.image}}" alt="{{restaurant.name}}"
         style="max-width: 600px;">
       <div class="text-center mb-5">
+        <a href="/restaurants/{{ restaurant._id}}/edit">
+          <button type="button" class="btn btn-outline-warning">
+            修改
+          </button>
+        </a>
         <a href="/">
           <button type="button" class="btn btn-outline-secondary">
             返回
