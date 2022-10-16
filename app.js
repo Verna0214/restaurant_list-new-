@@ -29,6 +29,7 @@ app.use(methodOverride('_method'))
 app.get('/', (req, res) => {
   Restaurant.find() // 取出Restaurant model裡的資料
     .lean()
+    .sort({ _id: 'asc' })
     .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.log(error))
 })
