@@ -36,7 +36,18 @@ $ cd restaurant_list-new
 $ npm init -y
 ```
 
-4. Start project
+4. Set environment variable
+
+**macOS**
+```
+$ export MONGODB_URI="mongodb+srv://alpha:camp@cluster0.qf4d2sz.mongodb.net/restaurant-list?retryWrites=true&w=majority"
+```
+**Windows**
+```
+$ set MONGODB_URI="mongodb+srv://alpha:camp@cluster0.qf4d2sz.mongodb.net/restaurant-list?retryWrites=true&w=majority"
+```
+
+5. Start project
 ```
 # npm run seed
 ```
