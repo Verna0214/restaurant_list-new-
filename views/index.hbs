@@ -16,6 +16,14 @@
           <div class="input-group-append">
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
+          <div class="input-group col-3">
+            <select class="form-select w-50" id="sort" name="sort">
+              <option value="1" {{#if typeObject.isOne }}selected{{/if}}>A > Z</option>
+              <option value="2" {{#if typeObject.isTwo }}selected{{/if}}>Z > A</option>
+              <option value="3" {{#if typeObject.isThree }}selected{{/if}}>類別</option>
+              <option value="4" {{#if typeObject.isFour }}selected{{/if}}>地區</option>
+            </select>
+          </div>
         </div>
       </form>
     </div>
